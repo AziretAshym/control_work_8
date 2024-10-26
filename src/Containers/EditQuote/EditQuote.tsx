@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { IQuote, IQuoteAPI, IQuoteForm } from '../../types';
-import { useNavigate, useParams } from 'react-router-dom';
-import axiosAPI from '../../AxiosAPI.ts';
-import QuoteForm from '../../Components/QuoteForm/QuoteForm.tsx';
-import Loader from '../../Components/UI/Loader/Loader.tsx';
+import React, { useCallback, useEffect, useState } from "react";
+import { IQuote, IQuoteAPI, IQuoteForm } from "../../types";
+import { useNavigate, useParams } from "react-router-dom";
+import axiosAPI from "../../AxiosAPI.ts";
+import QuoteForm from "../../Components/QuoteForm/QuoteForm.tsx";
+import Loader from "../../Components/UI/Loader/Loader.tsx";
 
 const EditQuote = () => {
   const [quote, setQuote] = useState<IQuote>();
@@ -11,11 +11,10 @@ const EditQuote = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-
   const fetchOneQuote = useCallback(async (id: string) => {
     try {
       setLoading(true);
-      const response = await axiosAPI.get<IQuoteAPI>(`quotes/${id}.json`)
+      const response = await axiosAPI.get<IQuoteAPI>(`quotes/${id}.json`);
       if (response.data) {
         setQuote(response.data);
       }
@@ -48,7 +47,9 @@ const EditQuote = () => {
 
   return (
     <>
-      {loading ? <Loader /> : (
+      {loading ? (
+        <Loader />
+      ) : (
         <>
           {quote ? (
             <>

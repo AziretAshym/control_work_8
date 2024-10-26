@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { IQuoteForm } from '../../types';
+import React, { useEffect, useState } from "react";
+import { IQuoteForm } from "../../types";
 
 const initialForm = {
   category: "",
@@ -8,65 +8,73 @@ const initialForm = {
 };
 
 interface Props {
-  quoteToEdit?:IQuoteForm
+  quoteToEdit?: IQuoteForm;
   submitForm: (quote: IQuoteForm) => void;
 }
 
-
-const QuoteForm: React.FC<Props> = ({quoteToEdit,submitForm}) => {
-  const [quote, setQuote] = useState<IQuoteForm>({...initialForm});
+const QuoteForm: React.FC<Props> = ({ quoteToEdit, submitForm }) => {
+  const [quote, setQuote] = useState<IQuoteForm>({ ...initialForm });
 
   useEffect(() => {
     if (quoteToEdit) {
-      setQuote(prevState => ({
+      setQuote((prevState) => ({
         ...prevState,
-        ...quoteToEdit
-      }))
+        ...quoteToEdit,
+      }));
     }
   }, [quoteToEdit]);
 
-  const onChangeField = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const {name, value} = e.target;
+  const onChangeField = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
 
     setQuote((prevState) => ({
       ...prevState,
-      [name]: value
-    }))
+      [name]: value,
+    }));
   };
 
-  const onFormSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    submitForm({...quote});
+    submitForm({ ...quote });
 
     if (!quoteToEdit) {
-      setQuote({...initialForm});
+      setQuote({ ...initialForm });
     }
   };
 
   return (
     <>
-      <h1 className="text-center mb-5">{quoteToEdit ? "Edit quote" : "Add new quote"}</h1>
+      <h1 className="text-center mb-5">
+        {quoteToEdit ? "Edit quote" : "Add new quote"}
+      </h1>
       <form className="w-50 ms-auto me-auto" onSubmit={onFormSubmit}>
         <div className="container">
           <div className="mb-3">
             <select
               className="form-select"
-              aria-label="Default select example"
+              aria-label="Select category"
               name="category"
               value={quote.category}
               onChange={onChangeField}
             >
-              <option value="">Select category</option>
-              <option value="Star Wars">Star Wars</option>
-              <option value="Famous people">Famous people</option>
-              <option value="Saying">Saying</option>
-              <option value="Humour">Humour</option>
-              <option value="Motivational">Motivational</option>
+              <option value="" disabled>
+                Select category
+              </option>
+              <option value="star-wars">Star Wars</option>
+              <option value="famous-people">Famous people</option>
+              <option value="saying">Saying</option>
+              <option value="humour">Humour</option>
+              <option value="motivational">Motivational</option>
             </select>
           </div>
           <div className="mb-3">
-            <label htmlFor="author" className="form-label">Author</label>
+            <label htmlFor="author" className="form-label">
+              Author
+            </label>
             <input
               type="text"
               className="form-control"
@@ -75,11 +83,14 @@ const QuoteForm: React.FC<Props> = ({quoteToEdit,submitForm}) => {
               name="author"
               id="author"
               placeholder="Enter your name"
-              required/>
+              required
+            />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="quote_text" className="form-label">Quote</label>
+            <label htmlFor="quote_text" className="form-label">
+              Quote
+            </label>
             <textarea
               className="form-control"
               value={quote.text}
@@ -87,10 +98,13 @@ const QuoteForm: React.FC<Props> = ({quoteToEdit,submitForm}) => {
               name="text"
               id="quote_text"
               placeholder="Enter quote text"
-              required/>
+              required
+            />
           </div>
 
-          <button type="submit" className="btn btn-primary">{quoteToEdit ? "Edit" : "Add"}</button>
+          <button type="submit" className="btn btn-primary">
+            {quoteToEdit ? "Edit" : "Add"}
+          </button>
         </div>
       </form>
     </>
