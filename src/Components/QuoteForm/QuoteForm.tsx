@@ -5,6 +5,7 @@ const initialForm = {
   category: "",
   author: "",
   text: "",
+  datetime:new Date(),
 };
 
 interface Props {

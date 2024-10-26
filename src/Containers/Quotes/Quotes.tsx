@@ -21,6 +21,7 @@ const Quotes = () => {
           (quoteKey) => ({
             id: quoteKey,
             ...response.data[quoteKey],
+            datetime: response.data[quoteKey].datetime,
           }),
         );
         setQuotes(quotesFromAPI);
@@ -65,8 +66,9 @@ const Quotes = () => {
                   className="card w-100 ms-5 mb-3"
                   style={{ width: "40rem" }}
                 >
-                  <div className="card-header bg-primary-subtle">
+                  <div className="card-header bg-primary-subtle d-flex justify-content-between">
                     <p className="fs-4 fw-semibold">{quote.author}</p>
+                    <p className="fs-4 fw-semibold">{new Date(quote.datetime).toLocaleDateString()}</p>
                   </div>
                   <div className="card-body">
                     <p className="card-title fs-5">

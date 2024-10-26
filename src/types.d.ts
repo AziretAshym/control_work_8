@@ -9,6 +9,7 @@ export interface IQuote {
   category: string;
   author: string;
   text: string;
+  datetime: string;
 }
 
 export interface IQuoteAPI {
