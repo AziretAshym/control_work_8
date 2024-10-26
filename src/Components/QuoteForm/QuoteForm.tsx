@@ -46,7 +46,7 @@ const QuoteForm: React.FC<Props> = ({quoteToEdit,submitForm}) => {
 
   return (
     <>
-      <nav className="text-center mb-5">Add new quote</nav>
+      <h1 className="text-center mb-5">{quoteToEdit ? "Edit quote" : "Add new quote"}</h1>
       <form className="w-50 ms-auto me-auto" onSubmit={onFormSubmit}>
         <div className="container">
           <div className="mb-3">
@@ -90,7 +90,7 @@ const QuoteForm: React.FC<Props> = ({quoteToEdit,submitForm}) => {
               required/>
           </div>
 
-          <button type="submit" className="btn btn-primary">Add new quote</button>
+          <button type="submit" className="btn btn-primary">{quoteToEdit ? "Edit" : "Add"}</button>
         </div>
       </form>
     </>

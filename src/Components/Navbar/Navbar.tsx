@@ -13,7 +13,7 @@ const Navbar = () => {
                   <NavLink to="/" className="nav-link">Quotes</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/add-quote" className="nav-link">Add new quote</NavLink>
+                  <NavLink to="/quotes/add-quote" className="nav-link">Add new quote</NavLink>
                 </li>
               </ul>
             </div>
